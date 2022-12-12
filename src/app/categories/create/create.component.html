@@ -1,0 +1,85 @@
+<nz-modal [nzVisible]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzClosable]="false" [nzMaskClosable]="false"
+    (nzOnCancel)="categoryService.closeModal()" (nzOnOk)="showConfirm()" [nzWrapClassName]="'warp-customer-modal'">
+    <ng-template #modalTitle>
+        <div *ngIf="category">カテゴリ編集</div>
+        <div *ngIf="!category">カテゴリ新規作成</div>
+    </ng-template>
+
+    <ng-template #modalContent>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="">店舗タイプ</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">{{ type.name }}</nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="">カテゴリ名</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="validateTplName">
+                    <input nz-input formControlName="name" class="font-16" maxlength="30" />
+                </nz-form-control>
+                <ng-template #validateTplName let-control>
+                    <ng-container *ngIf="control.hasError('maxlength') || control.hasError('html-validator')">カテゴリ名が正しくありません。</ng-container>
+                    <ng-container *ngIf="control.hasError('required')">この項目は入力が必須です。</ng-container>
+                </ng-template>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="">画像
+                    <i nz-icon nzType="info-circle" nzTheme="outline" title="1MB以下の画像（jpg、png）を選択してください。"
+                        class="size-icon"></i>
+                </nz-form-label>
+                <nz-form-control [nzErrorTip]="validateTplImage" [nzSm]="14" [nzXs]="20">
+                    <input [ngClass]="isExceed ? 'error':''" class="font-16" nz-input disabled [placeholder]="placeholder ? placeholder : '画像ファイルを選択してください'">
+                    <div class="textError" *ngIf="isExceed">1MB以下の画像（jpg、png）を選択してください。</div>
+                    <input nz-input formControlName="image" type="hidden" />
+                </nz-form-control>
+                <ng-template #validateTplImage let-control>
+                    <ng-container *ngIf="control.hasError('required') && !isExceed">この項目は入力が必須です。</ng-container>
+                </ng-template>
+                <nz-form-control [nzSm]="{ span: 2, offset: 1 }" [nzXs]="4">
+                    <button nz-button nzType="default" type="button" (click)="upload.click()"
+                        class="button-refer">参照</button>
+                </nz-form-control>
+            </nz-form-item>
+
+            <div *ngIf="validateForm.value.image && (!imageChangedEvent || isResetCropImage)" [style.textAlign]="'center'">
+                <img [src]="validateForm.value.image | koshikiImage" class="style-img">
+            </div>
+
+            <input type="file" class="d-none" #upload (change)="fileChangeEvent($event);" accept="image/x-png,image/jpeg">
+            <div *ngIf="imageChangedEvent">
+                <div *ngIf="!isResetCropImage">
+                    <image-cropper
+                        [imageChangedEvent]="imageChangedEvent"
+                        [outputType]="'both'"
+                        [maintainAspectRatio]="true"
+                        [aspectRatio]="aspectRatio"
+                        [resizeToWidth]="resizeToWidth"
+                        format="png"
+                        (imageCropped)="imageCropped($event)"
+                    ></image-cropper>
+                    <div class="text-center">
+                        <p>{{ widthHeightCrop.width }} x {{ widthHeightCrop.height }}px</p>
+                        <button type="button" nz-button class="style-btn-crop" (click)="handleUpload()" [nzLoading]="isUploading" >クロップする</button>
+                        <button type="button" nz-button class="style-btn-crop" (click)="cancelCrop(upload);" >キャンセル</button>
+                    </div>
+                </div>
+                <div *ngIf="isResetCropImage" [class]="'text-center'">
+                    <button type="button" class="style-btn-crop" nz-button (click)="isResetCropImage = !isResetCropImage" >リセットする</button>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <div nz-row>
+            <div nz-col nzSpan="8" nzOffset="2">
+                <button nz-button nzType="primary" (click)="showConfirm()" [disabled]="!isResetCropImage" [nzLoading]="isSubmit$ | async">登録</button>
+            </div>
+            <div nz-col nzSpan="8" nzOffset="2">
+                <button nz-button nzType="default" (click)="categoryService.closeModal(); isExceed = false; isResetCropImage = true;">閉じる</button>
+            </div>
+        </div>
+    </ng-template>
+
+</nz-modal>

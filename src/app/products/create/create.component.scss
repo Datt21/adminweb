@@ -1,0 +1,59 @@
+.button-refer {
+  width: 64px;
+  height: 36px;
+  background: #dadada;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  border-color: #dadada;
+}
+
+::ng-deep .ant-modal-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+::ng-deep nz-modal .ant-modal-body label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #5e6372;
+}
+
+::ng-deep .ant-form-item-children {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #5e6372;
+}
+
+::ng-deep .border-error {
+  border: 1px solid red;
+}
+
+::ng-deep .text-error {
+  color: #f5222d !important;
+  font-size: 14px !important;
+}
+
+.display-none {
+  display: none !important;
+}
+.label-header {
+  margin-bottom: 0px;
+}
+.style-img {
+  max-width: 300px;
+  max-height: 200px;
+}
+.style-icon {
+  padding-top: 12px;
+}
+.style-btn-crop {
+  margin: 10px;
+}

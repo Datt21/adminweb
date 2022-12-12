@@ -1,0 +1,28 @@
+<div class="search-shop">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" [nzLayout]="'inline'" nz-row nzType="flex" nzJustify="center">
+        <nz-form-item nz-col nzSpan="7">
+            <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="">店舗コード</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="">
+            <input nz-input formControlName="id"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col nzSpan="6">
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="">店舗名</nz-form-label>
+            <nz-form-control [nzSm]="17" [nzXs]="24" nzErrorTip="">
+            <input nz-input formControlName="name"/>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item nz-col nzSpan="8">
+            <nz-form-control [nzSm]="24" [nzXs]="24" nzErrorTip="" class="text-center">
+                <nz-checkbox-group formControlName="storeTypes"></nz-checkbox-group>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item nz-col nzSpan="3" class="text-center">
+            <nz-form-control>
+                <button nz-button nzType="primary">検索</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</div>

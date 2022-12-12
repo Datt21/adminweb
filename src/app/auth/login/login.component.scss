@@ -1,0 +1,92 @@
+.footer {
+  background-image: url("/assets/footer.png");
+  background-repeat: repeat-x;
+  min-height: 162px;
+}
+
+.body {
+  padding: 8% 15px 0 15px;
+  background: #0550A1;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 162px - 80px);
+}
+
+.body .center-block{
+  display: inline-block;
+  color:#fff;
+}
+
+.body .center-block h1{
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 28px;
+  color: #fff;
+} 
+
+::ng-deep .body .center-block [nz-form] nz-form-label{
+  text-align: left;
+  margin-right: 20px;
+}
+
+.forgot-password{
+  text-align: right;
+}
+
+.forgot-password a{
+  text-decoration: underline;
+  color:#fff;
+  padding-right: 15px;
+  font-size: 17px;
+}
+.body .center-block [nz-form] input{
+  height: 40px;
+  background: #FFFFFF;
+  border-radius: 3px;
+  border:none;
+  min-width: 290px;
+}
+
+.body .center-block nz-form-label{
+  text-align: left;
+}
+
+.header {
+  background: #FECC0B;
+  text-align: center;
+}
+.text-center{
+  text-align: center;
+}
+
+::ng-deep .ant-form-item-label label {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-submit {
+  background: #fff;
+  color: #0550A1;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 30px;
+  margin-top: 5%;
+}
+.btn-submit:hover {
+  background: #1890ff;
+  color: #fff;
+}
+.ant-form-item {
+  margin-top: 5%;
+}
+.title-header {
+  margin-left: 7%;
+}
+.login-form {
+  margin-left: -6%;
+}
+.text-error {
+  font-weight: 600;
+}

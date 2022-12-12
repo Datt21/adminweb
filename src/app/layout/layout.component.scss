@@ -1,0 +1,136 @@
+// nz-sider
+.left-layout {
+	height: 100vh;
+}
+nz-sider {
+	overflow: auto;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	background: #FECC0B;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.19);
+	
+}
+.right-layout {
+	margin-left: 256px;
+}
+nz-sider div.logo img{
+  	margin:10px auto;
+  	display:block;
+}
+
+nz-sider .menus{
+  	margin: 10px 15px;
+  	margin-top: 100px;
+}
+nz-sider .menus{
+	list-style: none;
+	margin: 0px 15px;
+	margin-top: 100px; 
+	padding-left: 0;
+}
+nz-sider .menus > li > a{
+	display: block;
+	padding: 10px 15px;
+	text-align: left;
+	color:#5E6372;
+	border-radius:4px;
+	line-height: 20px;
+	font-weight: 600;
+	font-size: 20px;
+}
+nz-sider .menus > li > a.active{
+	color:#fff;
+	border-radius:4px;
+	background: #0550A1;
+}
+
+// nz-header
+nz-header{
+    background: linear-gradient(150.22deg, #0550A1 9.19%, #3284EB 103.15%);
+    min-height: 100px;
+	padding:10px 25px;
+	height: unset;
+	line-height: unset;
+}
+
+nz-header .account ul{
+    list-style: none;
+    text-align: right;
+}
+
+nz-header .account ul li{
+    display: inline-block;
+	margin-left: 25px;
+}
+nz-header .account ul li a{
+	color: #fff;
+	font-size: 18px;
+    font-weight: 600;
+}
+nz-header .account ul li a span{
+	display: inline-block;
+	padding-left: 5px;
+	font-size: 18px;
+    font-weight: 600;
+}
+nz-header h1{
+	color: #fff;
+	font-size: 36px;
+	font-weight: bold;
+}
+
+
+// nz-content
+nz-content{
+	padding:50px 25px 100px 25px;
+	min-height: unset;
+}
+
+// collapse
+nz-collapse-panel{
+	background-color:transparent;
+}
+::ng-deep nz-layout nz-collapse .ant-collapse{
+	border:none;
+	background-color:transparent;
+}
+::ng-deep nz-layout nz-collapse .ant-collapse-borderless > .ant-collapse-item{
+	border-bottom:none;
+}
+::ng-deep nz-layout nz-collapse .ant-collapse > .ant-collapse-item > .ant-collapse-header{
+	display: block;
+	padding: 10px 15px;
+	text-align: left;
+	color:#5E6372;
+	border-radius:4px;
+	line-height: 20px;
+	font-weight: 600;
+}
+::ng-deep nz-layout nz-collapse .ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow{
+	right:15px;
+	left:unset;
+}
+::ng-deep nz-layout nz-collapse .ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box a{
+	display: block;
+	padding: 10px 15px;
+	text-align: left;
+	color:#5E6372;
+	line-height: 20px;
+	font-weight: 600;
+}
+::ng-deep nz-layout nz-collapse .ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box a.active{
+	color:#fff;
+	background: #0550A1;
+	border-radius: 5px;
+}
+
+::ng-deep nz-layout nz-collapse .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+	font-size: 20px;
+}
+::ng-deep nz-layout nz-collapse .ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box a  {
+	font-size: 20px;
+}
+h1 {
+	margin-bottom: 0;
+}

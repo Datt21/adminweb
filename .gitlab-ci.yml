@@ -1,0 +1,45 @@
+stages:
+  - test
+  - build
+  - deploy
+
+variables:
+  BUCKET: ministop-koshikiapp-adminweb-dev
+  DISTRIBUTION_ID: E31GT8XH54R20F
+
+
+cache:
+  paths: ['node_modules']
+
+before_script:
+  - npm i
+
+lint:nglint:
+  stage: test
+  image: trion/ng-cli
+  script:
+    - npm run lint
+
+build:
+  only:
+    - develop
+  stage: build
+  image: node:alpine
+  script:
+    - npm run build:prod
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist
+deploy:
+  only:
+    - develop
+  stage: deploy
+  image: node:alpine
+  script:
+    - apk update
+    - apk add --no-cache curl jq python py-pip bash
+    - pip install awscli
+    - aws s3 sync ./dist/kaimono s3://${BUCKET} --acl public-read --delete
+    - aws s3 cp s3://${BUCKET}/index.html s3://${BUCKET}/index.html --metadata-directive REPLACE --cache-control max-age=0 --acl public-read
+    - aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths '/*'

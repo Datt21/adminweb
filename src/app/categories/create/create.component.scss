@@ -1,0 +1,68 @@
+.button-refer {
+  width: 64px;
+  height: 36px;
+  background: #dadada;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  border-color: #dadada;
+}
+
+::ng-deep .ant-modal-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+::ng-deep nz-modal .ant-modal-body label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #5e6372;
+}
+
+::ng-deep .ant-form-item-children {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #5e6372;
+}
+::ng-deep .anticon svg:hover {
+  cursor: pointer;
+}
+.error {
+  border-color: #f5222d;
+}
+.textError {
+  color: #f5222d;
+  font-size: 16px;
+}
+::ng-deep .ant-modal-confirm-body .ant-modal-confirm-title {
+  color: #000000;
+}
+.font-16 {
+  font-size: 16px;
+}
+.size-icon {
+  padding-top: 12px;
+}
+.style-img {
+  max-width: 300px;
+  max-height: 200px;
+}
+.ant-form input[type='file'] {
+  display: none;
+}
+.ant-form-item {
+  margin-bottom: 0;
+}
+.style-btn-crop {
+  margin: 10px;
+}
+::ng-deep .ant-form-item {
+  margin-bottom: 12px !important;
+}

@@ -1,0 +1,89 @@
+<nz-spin nzTip="Loading..." [nzSpinning]="isSpinning | async">
+  <app-shop-search (valueForm)="valueForm($event)"></app-shop-search>
+  <nz-table
+    #basicTable
+    [nzData]="shops"
+    [nzFrontPagination]="false"
+    [nzScroll]="{ y: '500px' }"
+  >
+    <tbody>
+      <thead>
+        <tr>
+          <th class="width-10 color-header">店舗コード</th>
+          <th class="width-20 color-header">店舗名</th>
+          <th class="width-30 color-header">住所</th>
+          <th class="width-10 color-header text-center">FF注文受付</th>
+          <th class="width-30 text-right">
+            <nz-radio-group
+              [(ngModel)]="storeTypeRadio"
+              (ngModelChange)="showConfirm('checkAllVertical', 1)"
+            >
+              <label
+                nz-radio
+                [nzValue]="item.id"
+                [nzDisabled]="shops.length > 0 ? 'false' : 'true'"
+                *ngFor="let item of storeTypesOptions"
+                class="color-header"
+                >{{ item.name }}</label
+              >
+            </nz-radio-group>
+          </th>
+        </tr>
+      </thead>
+      <tr *ngFor="let shop of shops">
+        <td class="width-10">{{ shop.id }}</td>
+        <td class="width-20">{{ shop.storeName }}</td>
+        <td class="width-30">{{ shop.address }}</td>
+        <td class="width-10 text-center">
+          <label
+            nz-checkbox
+            [ngModel]="shop.sellFastFood"
+            (ngModelChange)="
+              showConfirm(
+                {
+                  shop: shop,
+                  newData: { sellFastFood: $event },
+                  oldData: { sellFastFood: shop.sellFastFood }
+                },
+                2
+              )
+            "
+          ></label>
+        </td>
+        <td class="width-30 text-right">
+          <nz-radio-group
+            [ngModel]="shop.storeType"
+            (ngModelChange)="
+              showConfirm(
+                {
+                  shop: shop,
+                  newData: { storeType: $event },
+                  oldData: { storeType: shop.storeType }
+                },
+                1
+              )
+            "
+          >
+            <label *ngFor="let item of types" nz-radio [nzValue]="item.id">{{
+              item.name
+            }}</label>
+          </nz-radio-group>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <div *ngIf="shops && pagination" class="pagination-bottom">
+    <nz-pagination
+      [nzPageIndex]="pagination.page"
+      [nzTotal]="pagination.total"
+      [nzSize]="'small'"
+      [nzShowTotal]="totalTemplate"
+      [nzPageSize]="pagination.size"
+      (nzPageIndexChange)="onIndexChange($event)"
+    >
+    </nz-pagination>
+    <ng-template #totalTemplate let-range="range" let-total
+      >全店舗[{{ total }}]店の[{{ range[0] }}]～ [{{ range[1] }}]</ng-template
+    >
+  </div>
+</nz-spin>

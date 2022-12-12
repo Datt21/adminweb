@@ -1,0 +1,51 @@
+<nz-spin nzTip="Loading..." [nzSpinning]="isSpinning | async">
+  <section class="header">
+    <img src="./assets/image.png" alt="">
+  </section>
+  <section class="body">
+    <div class="center-block login-form">
+      
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label [nzSm]="5" [nzXs]="24"></nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24" class="text-center title-header">
+				    <h1>お買い物アプリ<br>FF注文機能</h1>
+          </nz-form-control>
+
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="7" [nzXs]="24" nzFor="email">メールアドレス</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="validateTplMail">
+            <input type="email" name="email" maxlength="255" nz-input formControlName="email" />
+          </nz-form-control>
+          <ng-template #validateTplMail let-control>
+            <ng-container *ngIf="!control.hasError('required')">
+              <ng-container *ngIf="control.hasError('mail-validator') || control.hasError('maxlength')">
+                <label class="text-error">メールアドレスが正しくありません。</label></ng-container>
+            </ng-container>
+            <ng-container *ngIf="control.hasError('required')"><label class="text-error">この項目は入力が必須です。</label></ng-container>
+          </ng-template>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="7" [nzXs]="24" nzFor="password">パスワード</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="validateTplPass">
+            <input nz-input name="password" maxlength="16" minlength="8" type="password" formControlName="password" />
+          </nz-form-control>
+          <ng-template #validateTplPass let-control>
+            <ng-container *ngIf="control.hasError('maxlength') || control.hasError('minlength')">
+              <label class="text-error">8桁～16桁の半角英数字を入力してください。</label>
+              </ng-container>
+            <ng-container *ngIf="control.hasError('required')"><label class="text-error">この項目は入力が必須です。</label></ng-container>
+          </ng-template>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="7" [nzXs]="24"></nz-form-label>
+          <nz-form-control [nzSm]="15" [nzXs]="24" class="text-center">
+            <button nz-button class="btn-submit">ログイン</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </section>
+  <section class="footer"></section>
+</nz-spin>

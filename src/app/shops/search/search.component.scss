@@ -1,0 +1,57 @@
+.search-shop [nz-form]{
+    margin: 0px auto;
+}
+::ng-deep .search-shop [nz-form] nz-form-label label::after{
+    display: none;
+}
+::ng-deep .search-shop [nz-form] nz-form-label label{
+    font-weight: bold;
+    color: #5E6372;
+    padding-right: 25px;
+}
+::ng-deep .search-shop [nz-form] button{
+    background: linear-gradient(177.04deg, #0550A1 -59.7%, #3284EB 118.55%);
+    border-radius: 5px;
+    height: 40px;
+    width: 125px;
+    font-size: 18px;
+    font-weight: 600;
+}
+::ng-deep .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #5E6372;
+    border-color: #5E6372!important;
+    border-radius: 3px;
+}
+::ng-deep .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner {
+    border-color: #5E6372!important;
+}
+::ng-deep .ant-checkbox-checked::after {
+    border: 1px solid #5E6372;
+}
+::ng-deep .ant-form label {
+    font-size: 18px;
+}
+
+::ng-deep .ant-radio-input:focus + .ant-radio-inner {
+    color: #5E6372;
+}
+
+::ng-deep .ant-radio-checked .ant-radio-inner {
+    border-color: #5E6372;
+}
+
+::ng-deep .ant-radio-inner::after {
+    top: 0px;
+    left: 0px;
+    width: 14px;
+    height: 14px;
+    background-color: #000000;
+}
+
+::ng-deep .ant-radio:hover .ant-radio-inner {
+    border-color: #5E6372;
+}
+
+::ng-deep .ant-input {
+    height: 40px !important;
+}
