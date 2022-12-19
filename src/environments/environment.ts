@@ -3,16 +3,19 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-    production: false,
-    baseUrlAuth: 'https://dmikcr6mwkewb.cloudfront.net/api/auth/admin',
-    baseUrl: 'https://dmikcr6mwkewb.cloudfront.net/api/master-data',
-    domain: 'https://d28wi64mkihktj.cloudfront.net/',
-    aspectRatio: 1 / 1,
-    resizeToWidth: 154,
-    fileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
-    redirectAfterLogin: '/admin/home'
+  production: false,
+  baseUrlAuth:
+    "http://kaimono-2019-1690777928.ap-northeast-1.elb.amazonaws.com/api/auth/admin",
+  baseUrl:
+    "http://kaimono-2019-1690777928.ap-northeast-1.elb.amazonaws.com/api/master-data",
+  mobileOrderUrl:
+    "http://kaimono-2019-1690777928.ap-northeast-1.elb.amazonaws.com/api/mobile-order",
+  domain: "https://d218ztyit1smt5.cloudfront.net/",
+  aspectRatio: 1 / 1,
+  resizeToWidth: 154,
+  fileTypes: ["image/jpg", "image/jpeg", "image/png"],
+  redirectAfterLogin: "/admin/home",
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

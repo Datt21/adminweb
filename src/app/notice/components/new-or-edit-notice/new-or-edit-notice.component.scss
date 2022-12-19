@@ -1,0 +1,238 @@
+.ant-form input[type="file"] {
+  display: none;
+}
+.ant-calendar-header .ant-calendar-year-select {
+  color: red !important;
+}
+.border-danger {
+  border: 1px solid red;
+}
+[nz-radio] {
+  display: block;
+  height: 32px;
+  line-height: 32px;
+}
+nz-date-picker {
+  margin: 0 8px 12px 0;
+}
+
+.re-size {
+  width: 350px;
+}
+
+.image {
+  padding-bottom: 15px;
+}
+
+.btn-cus {
+  width: 150px;
+  height: 45px;
+}
+
+.mr-3 {
+  margin-right: 15px;
+}
+
+.input-block {
+  display: flex;
+  font-weight: 600;
+  margin-bottom: 15px;
+
+  .label {
+    width: 200px;
+    min-width: 200px;
+    margin-right: 20px;
+    text-align: right;
+  }
+
+  .pickup-private {
+    display: flex;
+
+    .label {
+      text-align: left;
+      width: 150px;
+      min-width: 150px;
+    }
+  }
+
+  .input-file-block {
+    width: 100%;
+    padding-right: 100px;
+  }
+}
+
+.ml-1 {
+  margin-left: 10px;
+}
+
+.ml-2 {
+  margin-left: 20px;
+}
+
+.ml-3 {
+  margin-left: 30px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.mr-4 {
+  margin-right: 2.5rem !important;
+}
+
+.mx-2 {
+  margin-left: 0.5rem !important;
+}
+
+.mt-1 {
+  margin-top: 5px;
+}
+
+.form-control-noti {
+  margin-top: 0;
+}
+.btn-cus {
+  width: 150px;
+  height: 45px;
+}
+.label-span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #5e6372 !important;
+}
+::ng-deep .container {
+  .ant-form-item-label label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #5e6372 !important;
+    font-family: "Open Sans";
+    font-style: normal;
+  }
+}
+
+.card-content {
+  margin-top: 20px;
+}
+
+.text-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #5e6372 !important;
+  font-family: "Open Sans";
+  font-style: normal;
+}
+
+::ng-deep .ant-card-head {
+  background-color: #d9d9d9;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: "Open Sans";
+}
+
+::ng-deep .ant-select-selection--multiple {
+  min-height: 40px;
+}
+::ng-deep .ant-select-selection__placeholder,
+.ant-select-search__field__placeholder {
+  line-height: 26px;
+}
+::ng-deep .ant-select-selection__clear {
+  top: 20px !important;
+}
+.text-left {
+  text-align: left !important;
+}
+::ng-deep .ant-table-column-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+::ng-deep .ant-table-tbody > tr > td {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+}
+::ng-deep .ant-table-thead > tr > th {
+  text-align: center;
+  color: #0550a1;
+}
+::ng-deep .ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  padding: 16px 5px;
+}
+::ng-deep .ant-checkbox-group {
+  span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #5e6372 !important;
+  }
+}
+.table-responsive {
+  .thead-light tr {
+    position: sticky;
+    top: -1px;
+    z-index: 1;
+    height: 44px;
+  }
+  //td {
+  //  padding: 0.25rem;
+  //}
+}
+.col-table-cus {
+  flex: 0 0 15.333333%;
+  max-width: 13.66666%;
+}
+
+.badge-cus {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.bg-gray {
+  background-color: #f2f2f2 !important;
+}
+.bg-white {
+  background-color: white !important;
+}
+::ng-deep .tooltip-inner {
+  background-color: black !important;
+  color: white !important;
+}
+::ng-deep .ant-select-tree {
+  height: 300px !important;
+}
+#area-form {
+  line-height: 3.1 !important;
+}
+.bd-red {
+  border: solid 1px red;
+  border-radius: 5px;
+}
+.csv-file-name {
+  text-decoration: underline;
+  color: #0075ff;
+  font-weight: 400;
+}
+.error-csv-text {
+  overflow-wrap: break-word;
+  white-space: break-spaces !important;
+  color: red;
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+  line-height: 2;
+}

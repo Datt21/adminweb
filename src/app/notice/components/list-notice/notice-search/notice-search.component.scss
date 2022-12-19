@@ -1,0 +1,30 @@
+::ng-deep .ant-form-item-control {
+  line-height: unset;
+}
+::ng-deep .ant-checkbox-checked::after {
+  border: 1px solid #5e6372;
+}
+::ng-deep .ant-form label {
+  font-size: 18px;
+}
+
+::ng-deep .body-search nz-form-label label {
+  font-size: 18px;
+  color: #5e6372;
+  font-weight: bold;
+  padding-right: 25px;
+}
+::ng-deep .body-search [nz-form] button.clear {
+  background: linear-gradient(177.04deg, #c4272a -59.7%, #eb3232 118.55%);
+  border-color: #f44336;
+  margin-left: 12px;
+}
+::ng-deep .body-search [nz-form] button {
+  background: linear-gradient(177.04deg, #0550a1 -59.7%, #3284eb 118.55%);
+  border-radius: 5px;
+  height: 40px;
+  width: 125px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}

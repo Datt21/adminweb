@@ -1,0 +1,188 @@
+<nz-spin nzTip="Loading..." [nzSpinning]="noticeListService.isSpinning">
+  <!-- <div class="body-search">
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      nz-row
+      (ngSubmit)="submitForm()"
+      nzType="flex"
+      nzGutter="16"
+      nzJustify="start"
+    >
+      <nz-form-item nz-col nzSpan="10">
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor=""
+          >公開フラグ</nz-form-label
+        >
+        <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="">
+          <nz-select formControlName="publicFlag" nzSize="large">
+            <nz-option
+              *ngFor="let item of publicFlagData"
+              [nzValue]="item.value"
+              [nzLabel]="item.label"
+            >
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-col nzSpan="10">
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="">対象</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="">
+          <nz-select formControlName="userDomain" nzSize="large">
+            <nz-option
+              *ngFor="let item of userDomainData"
+              [nzValue]="item.value"
+              [nzLabel]="item.label"
+            >
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-col nzSpan="10">
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="">タイトル</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="">
+          <input
+            formControlName="title"
+            nz-input
+            maxlength="255"
+            nzSize="large"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-col nzSpan="10">
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="">種類</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="">
+          <nz-select formControlName="notificationType" nzSize="large">
+            <nz-option
+              *ngFor="let item of typeData"
+              [nzValue]="item.value"
+              [nzLabel]="item.label"
+            >
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-col nzSpan="24">
+        <div nz-row nzType="flex" nzJustify="space-between">
+          <div>
+            <nz-form-control>
+              <button nz-button nzType="primary" (click)="btnAddClick()">
+                <i nz-icon nzType="plus" nzTheme="outline"></i> 新規作成
+              </button>
+            </nz-form-control>
+          </div>
+          <div>
+            <nz-form-control>
+              <button nz-button nzType="primary">
+                <i nz-icon nzType="search" nzTheme="outline"></i>検索
+              </button>
+              <button
+                nz-button
+                nzType="primary"
+                class="clear"
+                (click)="$event.preventDefault(); resetForm()"
+              >
+                <i nz-icon nzType="highlight" nzTheme="outline"></i>クリア
+              </button>
+            </nz-form-control>
+          </div>
+        </div>
+      </nz-form-item>
+    </form>
+  </div> -->
+  <app-notice-search (searchParams)="searchForm($event)"></app-notice-search>
+  <nz-table #borderedTable nzBordered nzShowPagination="false" [nzData]="[{}]">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>タイトル</th>
+        <th>対象</th>
+        <th>種類</th>
+        <th>タイプ</th>
+        <th>公開期間</th>
+        <th>公開フラグ</th>
+        <th>登録ステータス</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of notifications; let i = index">
+        <td class="txt-center" *ngIf="inputSearch?.page === 1">
+          {{ i + 1 }}
+        </td>
+        <td class="txt-center" *ngIf="inputSearch?.page !== 1">
+          {{ (inputSearch?.page - 1) * inputSearch?.limit + i + 1 }}
+        </td>
+
+        <td style="max-width: 250px">
+          <div style="word-break: break-all; width: 100%">
+            {{ data.title }}
+          </div>
+        </td>
+        <td>{{ data.userDomain }}</td>
+        <td>{{ data.notificationType }}</td>
+        <td>{{ data.displayPlace }}</td>
+        <td class="txt-center" style="width: 180px">
+          {{ data.startTime | date : "yyyy-MM-dd HH:mm:ss" }} ~
+          {{ data.endTime | date : "yyyy-MM-dd HH:mm:ss" }}
+        </td>
+        <td style="width: 120px">
+          <nz-switch
+            [nzDisabled]="data.status == 0 || data.state == 3 ? true : false"
+            [(ngModel)]="data.isPublic"
+            (ngModelChange)="switchVisible(data.id, $event)"
+          ></nz-switch>
+          {{ data.isPublic === 1 ? "公開中" : "非公開" }}
+        </td>
+        <td
+          class="text-center"
+          [ngStyle]="{
+            color:
+              data.state === 1 ? 'green' : data.state === 2 ? 'blue' : 'red'
+          }"
+        >
+          {{ notiStateStatus[data.state] }}
+        </td>
+        <td class="txt-center">
+          <span
+            nz-dropdown
+            [nzDropdownMenu]="menu"
+            nzTrigger="click"
+            [nzClickHide]="false"
+            style="cursor: pointer"
+          >
+            操作選択
+            <i nz-icon nzType="down"></i>
+          </span>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu nzSelectable>
+              <li nz-menu-item>
+                <i nz-icon nzType="eye" nzTheme="outline"></i> 詳細
+              </li>
+              <li nz-menu-item (click)="onEditNotice(data.id)">
+                <i nz-icon nzType="edit" nzTheme="outline"></i> 編集
+              </li>
+              <li nz-menu-item nz-popconfirm (click)="deleteNotice(data.id)">
+                <i nz-icon nzType="delete" nzTheme="outline"></i> 削除
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </td>
+      </tr>
+      <ng-container *ngIf="notifications?.length === 0">
+        <tr class="text-center">
+          <td colspan="10" class="text-color-red" style="color: red">
+            該当するデータがありません。
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </nz-table>
+  <div *ngIf="notifications">
+    <app-pager
+      #pagers
+      (onChangePage)="pagerChanges($event)"
+      [pageSize]="inputSearch.limit ? inputSearch.limit : 20"
+      [total]="total ? total : 0"
+    ></app-pager>
+  </div>
+</nz-spin>

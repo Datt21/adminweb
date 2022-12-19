@@ -1,15 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: normal;
 }
 
 body {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-style: normal;
 }
-a, label, div, h1, span {
-  font-family: 'Open Sans';
+a,
+label,
+div,
+h1,
+span {
+  font-family: "Open Sans";
   font-style: normal;
 }
 [nz-form] label::after {
@@ -114,7 +118,7 @@ nz-table tr {
 
 .ant-checkbox-wrapper:hover .ant-checkbox-inner,
 .ant-checkbox:hover .ant-checkbox-inner,
-.ant-checkbox-input:focus+.ant-checkbox-inner {
+.ant-checkbox-input:focus + .ant-checkbox-inner {
   border-color: #5e6372 !important;
 }
 
@@ -122,9 +126,8 @@ nz-table tr {
   color: #000000;
 }
 
-
-.space-between{
-  display:flex;
+.space-between {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -132,4 +135,82 @@ nz-table tr {
   margin-top: 40%;
   padding: 20px 15px 15px;
   border-radius: 5px;
+}
+
+.ant-calendar-year-select,
+.ant-calendar-month-select {
+  color: #5e6372 !important;
+}
+.container {
+  max-width: 1600px !important;
+  .ant-card-body {
+    padding-top: 42px !important;
+  }
+}
+.angular-editor-textarea {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #000 !important;
+  }
+}
+
+font[face="Arial"] {
+  font-family: Arial;
+}
+
+font[face="Times New Roman"] {
+  font-family: "Times New Roman";
+}
+
+font[face="Calibri"] {
+  font-family: Calibri;
+}
+
+font[face="Comic Sans MS"] {
+  font-family: "Comic Sans MS";
+}
+
+i {
+  font-style: italic;
+}
+.break-text {
+  word-break: break-all;
+}
+
+.coupon-dropdown {
+  .ant-select-dropdown-menu-item {
+    white-space: break-spaces;
+  }
+}
+.anticon {
+  vertical-align: 2px;
+}
+.theme-stg {
+  .ant-layout-sider {
+    background-color: #c96b9e !important;
+  }
+
+  .menus li a.active {
+    background-color: #7c3778 !important;
+  }
+
+  .menus li a {
+    color: white !important;
+  }
+
+  ul.menus li {
+    border-color: white !important;
+  }
+
+  .ant-layout-header {
+    background: linear-gradient(
+      150.22deg,
+      #7c3778 9.19%,
+      #e07aa8 103.15%
+    ) !important;
+  }
 }

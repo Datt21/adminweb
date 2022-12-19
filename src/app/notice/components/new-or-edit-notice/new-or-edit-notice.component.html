@@ -1,0 +1,436 @@
+<div nz-row class="container" nzJustify="center" nzType="flex">
+  <!-- Button -->
+  <div
+    nz-row
+    nzJustify="space-between"
+    nzType="flex"
+    style="width: 100%"
+    class="mb-3"
+  >
+    <!-- Button Back -->
+    <div>
+      <button nz-button nzType="default" (click)="back()" class="btn-cus">
+        戻る
+      </button>
+    </div>
+    <div class="d-flex">
+      <button
+        *ngIf="!this.idEdit"
+        nz-button
+        nzType="primary"
+        class="btn-cus mr-3"
+      >
+        下書き保存
+      </button>
+      <button nz-button nzType="primary" class="btn-cus">保存</button>
+    </div>
+  </div>
+</div>
+
+<div nz-col nzSpan="24" class="card-content">
+  <nz-card>
+    <form nz-form>
+      <!-- Mode test -->
+      <nz-form-item style="width: 100%">
+        <nz-form-label
+          [nzSm]="3"
+          [nzXs]="24"
+          nzFor=""
+          class="text-left"
+          style="margin-left: 36px"
+        >
+          <span class="ml-1 text-label">種別</span>
+          <span style="color: red; font-size: 15px">*</span>
+          <span class="text-label">:</span></nz-form-label
+        >
+        <nz-form-control [nzSpan]="4" class="form-control-noti">
+          <nz-select nzSize="large">
+            <nz-option [nzValue]="1" nzLabel="シンプルプッシュ通知"></nz-option>
+            <nz-option [nzValue]="2" nzLabel="お知らせ"></nz-option>
+            <nz-option [nzValue]="3" nzLabel="アプリ起動広告"></nz-option>
+            <nz-option
+              [nzValue]="4"
+              nzLabel="全ての会員へメール配信"
+            ></nz-option>
+          </nz-select>
+          <!-- <span
+            nz-typography
+            nzType="danger"
+            *ngIf="validateForm.get('displayPlace').invalid && isSubmitted"
+          >
+            この項目は入力必須です</span
+          > -->
+        </nz-form-control>
+        <!-- datepicker -->
+        <nz-form-label
+          [nzSm]="3"
+          class="text-left"
+          style="margin-left: 60px"
+          nzFor=""
+        >
+          <span class="text-label">公開期間</span>
+          <span style="color: red; font-size: 15px">*</span> :
+        </nz-form-label>
+        <nz-form-control [nzSm]="9" class="form-control-noti">
+          <nz-date-picker
+            [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
+          ></nz-date-picker>
+          <span style="font-weight: bold; font-size: 20px; margin-right: 5px">
+            ~
+          </span>
+          <nz-date-picker
+            nzFormat="yyyy-MM-dd HH:mm:ss"
+            [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"
+          ></nz-date-picker>
+          <br />
+          <!-- <span
+                nz-typography
+                nzType="danger"
+                *ngIf="
+                  (validateForm.get('startTime').invalid && isSubmitted) ||
+                  (validateForm.get('endTime').invalid && isSubmitted)
+                "
+              >
+                公開期間を入力してください。</span
+              >
+              <span
+                nz-typography
+                nzType="danger"
+                *ngIf="this.checkTimeOver && isSubmitted"
+              >
+                開始時間は終了時間より大きく設定できません</span
+              > -->
+        </nz-form-control>
+        <!-- checkbox flag -->
+        <nz-form-label [nzSm]="1" [nzXs]="24" class="text-left ml-3" nzFor="">
+          <span class="text-label">公開</span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="1" [nzXs]="24" class="form-control-noti">
+          <label nz-checkbox></label>
+        </nz-form-control>
+      </nz-form-item>
+      <!-- card 1 -->
+      <nz-card [nzTitle]="'会員指定'">
+        <!-- 会員情報 -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" class="text-left ml-2" [nzXs]="24">
+            <span class="text-label"> 会員情報:</span></nz-form-label
+          >
+          <nz-form-control [nzSpan]="6" class="form-control-noti">
+            <nz-select nzSize="large">
+              <nz-option [nzValue]="0" nzLabel="全員"></nz-option>
+              <nz-option
+                [nzValue]="1"
+                nzLabel="WAONPOINTカード未登録"
+              ></nz-option>
+              <nz-option
+                [nzValue]="2"
+                nzLabel="WAONPOINTカード登録済"
+              ></nz-option>
+              <nz-option
+                [nzValue]="3"
+                nzLabel="期間中にアプリ起動なし"
+              ></nz-option>
+              <nz-option
+                [nzValue]="4"
+                nzLabel="期間中に1回以上アプリ起動あり"
+              ></nz-option>
+              <nz-option
+                [nzValue]="5"
+                nzLabel="CSVファイル読み込み"
+              ></nz-option>
+            </nz-select>
+            <!-- <span
+                  nz-typography
+                  nzType="danger"
+                  *ngIf="validateForm.get('userDomain').invalid && isSubmitted"
+                >
+                  この項目は入力必須です</span
+                >
+                <span *ngIf="errorMsg" class="error-csv-text">{{
+                  errorMsg
+                }}</span> -->
+          </nz-form-control>
+        </nz-form-item>
+
+        <!-- 性別 -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="" class="text-left ml-1">
+            <span class="ml-1 text-label">性別</span>
+            <span style="color: red; font-size: 15px">*</span>
+            <span class="text-label">:</span></nz-form-label
+          >
+          <nz-form-control class="mt-1">
+            <nz-checkbox-wrapper>
+              <div nz-row class="d-flex">
+                <div class="mr-4 ml-1">
+                  <label nz-checkbox></label>
+                  <span class="mx-2">男性</span>
+                </div>
+                <div class="mr-4">
+                  <label nz-checkbox></label>
+                  <span class="mx-2">女性</span>
+                </div>
+              </div>
+            </nz-checkbox-wrapper>
+            <!-- <br /> -->
+            <!-- <span
+                  nz-typography
+                  nzType="danger"
+                  *ngIf="
+                    (validateForm.get('gender').errors && isSubmitted) ||
+                    (validateForm.get('gender').errors && isClickPreview)
+                  "
+                >
+                  性別を入力してください。</span
+                > -->
+          </nz-form-control>
+        </nz-form-item>
+        <!-- 年齢 -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="" class="text-left ml-1">
+            <span class="ml-1 text-label">年齢</span>
+            <span style="color: red; font-size: 15px">*</span>
+            <span class="text-label">:</span></nz-form-label
+          >
+          <nz-form-control class="mt-1">
+            <nz-checkbox-wrapper>
+              <div nz-row class="d-flex">
+                <div class="mr-4 ml-1">
+                  <label nz-checkbox></label>
+                  <span class="mx-2">10代以下</span>
+                </div>
+                <div class="mr-4">
+                  <label nz-checkbox></label>
+                  <span class="mx-2">20代</span>
+                </div>
+                <div class="mr-4">
+                  <label nz-checkbox></label>
+                  <span class="mx-2">30代</span>
+                </div>
+                <div class="mr-4">
+                  <label nz-checkbox></label>
+                  <span class="mx-2">40代</span>
+                </div>
+                <div class="mr-4">
+                  <label nz-checkbox></label>
+                  <span class="mx-2">50代以上</span>
+                </div>
+              </div>
+            </nz-checkbox-wrapper>
+            <br />
+            <!-- <span
+                  nz-typography
+                  nzType="danger"
+                  *ngIf="
+                    (validateForm.get('age').errors && isSubmitted) ||
+                    (validateForm.get('age').errors && isClickPreview)
+                  "
+                >
+                  年齢を選択してください。</span
+                > -->
+          </nz-form-control>
+        </nz-form-item>
+        <!-- 配信地域 -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" class="text-left ml-2" [nzXs]="12">
+            <span class="text-label">配信地域:</span>
+          </nz-form-label>
+          <nz-form-control [nzSpan]="5" class="form-control-noti">
+            <nz-select nzSize="large">
+              <nz-option nzValue="1" nzLabel="全て"></nz-option>
+              <nz-option nzValue="0" nzLabel="エリア指定"></nz-option>
+            </nz-select>
+            <!-- <span
+                  nz-typography
+                  nzType="danger"
+                  *ngIf="
+                    validateForm.get('area').invalid &&
+                    (validateForm.get('area').touched || isSubmitted)
+                  "
+                >
+                  を入力してください</span
+                > -->
+          </nz-form-control>
+
+          <!-- Area Type -->
+          <ng-template>
+            <nz-form-control
+              [nzSpan]="8"
+              [nzSpan]="14"
+              class="form-control-noti ml-3"
+              style="margin-top: -4px"
+            >
+              <nz-tree-select
+                [nzNodes]="provinces"
+                nzShowSearch
+                nzCheckable
+                nzPlaceHolder="選んでください"
+                readonly
+              >
+              </nz-tree-select>
+              <!-- <span nz-typography nzType="danger"> を入力してください。</span> -->
+            </nz-form-control>
+          </ng-template>
+        </nz-form-item>
+      </nz-card>
+      <nz-card [nzTitle]="'お知らせ内容'">
+        <!-- 画像 -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" class="text-left ml-2" [nzXs]="24" nzFor="">
+            <span class="text-label">画像 :</span>
+          </nz-form-label>
+          <nz-form-control
+            [nzErrorTip]="validateTplImage"
+            [nzSm]="8"
+            [nzXs]="20"
+            class="form-control-noti"
+          >
+            <input
+              [ngClass]="isExceed ? 'error' : ''"
+              class="font-16"
+              nz-input
+              disabled
+              placeholder="画像ファイルを選択してください/入力は不可能"
+            />
+            <div class="textError" *ngIf="isExceed" style="color: red">
+              アップロードのファイルの形式が間違ってます。
+            </div>
+            <input nz-input type="hidden" />
+          </nz-form-control>
+          <!-- <ng-template #validateTplImage let-control>
+                <ng-container *ngIf="control.hasError('required') && !isExceed"
+                  >この項目は入力が必須です。</ng-container
+                >
+              </ng-template> -->
+          <nz-form-control [nzSm]="{ span: 2, offset: 1 }" [nzXs]="4">
+            <!-- <button disabled nz-button nzType="default" class="button-refer">
+              参照
+            </button> -->
+            <button nz-button nzType="default" class="button-refer">
+              参照
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+        <!-- タイトル -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" class="text-left ml-2" [nzXs]="24" nzFor="">
+            <span class="text-label">タイトル:</span>
+          </nz-form-label>
+          <nz-form-control [nzSpan]="10" class="form-control-noti">
+            <input nz-input maxlength="250" />
+            <!-- <span
+                  nz-typography
+                  nzType="danger"
+                  *ngIf="
+                    !validateForm.get('title').value &&
+                    isSubmitted &&
+                    !checkTitleTypeEmail
+                  "
+                >
+                  を入力してください。</span
+                > -->
+          </nz-form-control>
+        </nz-form-item>
+        <!-- 内容 -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" class="text-left ml-2" [nzXs]="24" nzFor="">
+            <span class="text-label">内容:</span>
+          </nz-form-label>
+          <nz-form-control [nzSpan]="10" class="form-control-noti">
+            <textarea
+              nz-input
+              [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+              maxlength="250"
+            ></textarea>
+            <!-- <span
+                  nz-typography
+                  nzType="danger"
+                  *ngIf="
+                    !validateForm.get('shortcontent').value &&
+                    isSubmitted &&
+                    !checkContentTypeEmail
+                  "
+                >
+                  を入力してください。</span
+                > -->
+          </nz-form-control>
+        </nz-form-item>
+        <!-- 種類 -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" class="text-left ml-2" [nzXs]="24" nzFor="">
+            <span class="text-label">種類:</span>
+          </nz-form-label>
+          <nz-form-control [nzSpan]="10" class="form-control-noti">
+            <nz-select nzSize="large" nzPlaceHolder="詳細画面文書入力">
+              <nz-option [nzValue]="1" nzLabel="詳細画面文言入力"></nz-option>
+              <nz-option [nzValue]="2" nzLabel="Webリンク登録"></nz-option>
+            </nz-select>
+            <!-- <span
+                  nz-typography
+                  nzType="danger"
+                  *ngIf="
+                    validateForm.get('notificationType').invalid && isSubmitted
+                  "
+                >
+                  を入力してください。</span
+                > -->
+          </nz-form-control>
+        </nz-form-item>
+        <!-- URL -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="3" [nzXs]="24" nzFor="" class="text-left ml-1">
+            <span class="ml-1 text-label">URL</span>
+            <span style="color: red; font-size: 15px">*</span>
+            <span class="text-label">:</span></nz-form-label
+          >
+          <nz-form-control [nzSpan]="10" class="form-control-noti">
+            <input nz-input maxlength="250" class="ml-1" />
+            <!-- <span
+                  nz-typography
+                  nzType="danger"
+                  *ngIf="
+                    !validateForm.get('title').value &&
+                    isSubmitted &&
+                    !checkTitleTypeEmail
+                  "
+                >
+                  を入力してください。</span
+                > -->
+          </nz-form-control>
+        </nz-form-item>
+      </nz-card>
+    </form>
+  </nz-card>
+</div>
+
+<!-- <div *nzModalFooter>
+    <div nz-row>
+      <div nz-col nzSpan="5" nzOffset="2" *ngIf="!this.idDetail">
+        <button nz-button nzType="primary" (click)="registerNoti(true)">
+          下書き保存
+        </button>
+      </div>
+      <div nz-col nzSpan="5" nzOffset="2" *ngIf="!this.idDetail">
+        <button nz-button nzType="primary" (click)="registerNoti(false)">
+          保存
+        </button>
+      </div>
+      <div
+        nz-col
+        nzSpan="5"
+        nzOffset="2"
+        *ngIf="this.idDetail"
+        style="margin-left: 150px"
+      >
+        <button nz-button nzType="primary" (click)="registerNoti(false)">
+          保存
+        </button>
+      </div>
+      <div nz-col nzSpan="5" nzOffset="2">
+        <button nz-button nzType="default" (click)="closeModal()">
+          閉じる
+        </button>
+      </div>
+    </div>
+  </div> -->

@@ -1,0 +1,52 @@
+nz-table {
+  margin: auto;
+}
+
+::ng-deep .ant-table-column-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+::ng-deep .ant-table-tbody > tr > td {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+}
+::ng-deep .ant-table-thead > tr > th {
+  text-align: center;
+  color: #0550a1;
+}
+::ng-deep .ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  padding: 16px 5px;
+}
+.txt-right {
+  text-align: right;
+}
+.txt-center {
+  text-align: center;
+}
+.pagination-bottom {
+  text-align: right;
+  background: #fff;
+  min-height: 50px;
+  padding: 15px;
+  border-top: 1px solid #e8e8e8;
+}
+
+.color-header {
+  color: #0550a1;
+}
+.width-10 {
+  width: 10%;
+}
+.width-20 {
+  width: 20%;
+}
+.width-30 {
+  width: 30%;
+}
